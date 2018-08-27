@@ -1,4 +1,4 @@
-FROM vladikoff/fxa-slim-image:1.0.0
+FROM vladikoff/fxa-slim-image:latest
 
 RUN adduser --disabled-password --gecos '' fxa && adduser fxa sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
@@ -7,8 +7,7 @@ WORKDIR /home/fxa/fxa-auth-server
 RUN chown -R fxa .
 USER fxa
 
-RUN npm install --production \
-  && npm cache clear
+RUN npm install --production
 
 CMD node ./bin/key_server.js
 
